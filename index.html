@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>هیئت ابوالفضلی جوانان مسجد قریشی درگز</title>
+<!-- فونت وزیر -->
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"/>
+<style>
+    :root{
+        --primary:#0f7a5b;
+        --primary-dark:#064a37;
+        --primary-light:#1aa882;
+        --gold:#d4a94a;
+        --gold-light:#e9c977;
+        --bg-1:#07120e;
+        --bg-2:#0c1d17;
+        --card:#10241d;
+        --card-2:#0e1d17;
+        --text:#eaf4ef;
+        --muted:#9fb4ab;
+        --border:rgba(212,169,74,0.18);
+        --soft-border:rgba(26,168,130,0.25);
+    }
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        -webkit-tap-highlight-color:transparent;
+    }
+
+    html{ scroll-behavior:smooth; }
+
+    body{
+        font-family:"Vazir", Tahoma, sans-serif;
+        background:var(--bg-1);
+        color:var(--text);
+        line-height:1.9;
+        min-height:100vh;
+        overflow-x:hidden;
+        position:relative;
+    }
+
+    /* پس‌زمینه معنوی */
+    body::before{
+        content:"";
+        position:fixed;
+        inset:0;
+        background:
+            radial-gradient(circle at 20% 10%, rgba(26,168,130,0.18), transparent 40%),
+            radial-gradient(circle at 80% 90%, rgba(212,169,74,0.12), transparent 45%),
+            linear-gradient(180deg, #07120e 0%, #0c1d17 50%, #07120e 100%);
+        z-index:-2;
+    }
+
+    body::after{content:none;}
+
+    .container{
+        width:min(95%, 640px);
+        margin:auto;
+        padding:0 0 30px;
+    }
+
+    /* ===== هدر ===== */
+    .top-bar{
+        position:sticky;
+        top:0;
+        z-index:50;
+        background:rgba(7,18,14,0.85);
+        backdrop-filter:blur(14px);
+        -webkit-backdrop-filter:blur(14px);
+        border-bottom:1px solid var(--border);
+        padding:14px 18px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:10px;
+    }
+
+    .brand-logo{
+        width:42px;
+        height:42px;
+        border-radius:50%;
+        background:radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 55%, #8c6a1d);
+        display:grid;
+        place-items:center;
+        color:#1a1405;
+        font-weight:900;
+        font-size:1.1rem;
+        box-shadow:0 0 0 2px rgba(212,169,74,0.3), 0 6px 18px rgba(212,169,74,0.25);
+    }
+
+    .brand-text h1{
+        font-size:0.95rem;
+        color:var(--text);
+        line-height:1.2;
+    }
+
+    .brand-text p{
+        font-size:0.72rem;
+        color:var(--gold);
+        letter-spacing:0.5px;
+    }
+
+    /* ===== همبرگر ===== */
+    .hamburger{
+        width:44px;
+        height:44px;
+        border-radius:12px;
+        background:rgba(255,255,255,0.04);
+        border:1px solid var(--border);
+        display:grid;
+        place-items:center;
+        cursor:pointer;
+        transition:0.25s;
+    }
+
+    .hamburger:active{ transform:scale(0.94); }
+
+    .hamburger span{
+        display:block;
+        width:22px;
+        height:2px;
+        background:var(--gold);
+        position:relative;
+        transition:0.3s;
+    }
+
+    .hamburger span::before,
+    .hamburger span::after{
+        content:"";
+        position:absolute;
+        left:0;
+        width:22px;
+        height:2px;
+        background:var(--gold);
+        transition:0.3s;
+    }
+
+    .hamburger span::before{ top:-7px; }
+    .hamburger span::after{ top:7px; }
+
+    .hamburger.active span{ background:transparent; }
+    .hamburger.active span::before{ top:0; transform:rotate(45deg); }
+    .hamburger.active span::after{ top:0; transform:rotate(-45deg); }
+
+    /* ===== منوی کشویی ===== */
+    .drawer{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:82%;
+        max-width:340px;
+        height:100vh;
+        background:linear-gradient(180deg, #0c1d17 0%, #07120e 100%);
+        border-left:1px solid var(--border);
+        box-shadow:-20px 0 40px rgba(0,0,0,0.5);
+        transition:right 0.35s cubic-bezier(.5,.05,.3,1);
+        z-index:60;
+        padding:80px 22px 30px;
+        overflow-y:auto;
+    }
+
+    .drawer.open{ right:0; }
+
+    .drawer-title{
+        color:var(--gold);
+        font-size:0.95rem;
+        margin-bottom:18px;
+        padding-bottom:10px;
+        border-bottom:1px dashed rgba(212,169,74,0.3);
+        display:flex;
+        align-items:center;
+        gap:8px;
+    }
+
+    .drawer a.menu-item{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        text-decoration:none;
+        color:var(--text);
+        padding:14px;
+        border-radius:14px;
+        margin-bottom:10px;
+        background:rgba(255,255,255,0.03);
+        border:1px solid transparent;
+        transition:0.25s;
+    }
+
+    .drawer a.menu-item:hover,
+    .drawer a.menu-item:active{
+        background:linear-gradient(135deg, rgba(15,122,91,0.25), rgba(212,169,74,0.1));
+        border-color:var(--border);
+        transform:translateX(-4px);
+    }
+
+    .menu-icon{
+        width:40px;
+        height:40px;
+        border-radius:10px;
+        background:rgba(212,169,74,0.12);
+        display:grid;
+        place-items:center;
+        font-size:1.2rem;
+        flex-shrink:0;
+    }
+
+    .menu-label{ font-weight:700; font-size:0.95rem; }
+    .menu-desc{ font-size:0.75rem; color:var(--muted); margin-top:2px; }
+
+    .overlay{
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.55);
+        backdrop-filter:blur(2px);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity 0.3s;
+        z-index:55;
+    }
+
+    .overlay.show{ opacity:1; pointer-events:auto; }
+
+    /* ===== Hero ===== */
+    .hero{
+        text-align:center;
+        padding:38px 20px 28px;
+    }
+
+    .hero .ornament{
+        color:var(--gold);
+        font-size:1.4rem;
+        letter-spacing:8px;
+        margin-bottom:10px;
+        opacity:0.8;
+    }
+
+    .hero h2{
+        font-size:1.6rem;
+        color:var(--text);
+        margin-bottom:8px;
+        font-weight:800;
+    }
+
+    .hero h2 span{ color:var(--gold); }
+
+    .hero .subtitle{
+        color:var(--muted);
+        font-size:0.92rem;
+        margin-bottom:18px;
+    }
+
+    .ayah{
+        background:linear-gradient(135deg, rgba(212,169,74,0.08), rgba(15,122,91,0.08));
+        border:1px solid var(--border);
+        border-radius:18px;
+        padding:18px 20px;
+        margin:18px auto 0;
+        max-width:480px;
+        position:relative;
+    }
+
+    .ayah::before, .ayah::after{
+        content:"﴿";
+        position:absolute;
+        color:var(--gold);
+        font-size:1.6rem;
+        opacity:0.5;
+        top:50%;
+        transform:translateY(-50%);
+    }
+
+    .ayah::before{ right:10px; content:"﴿"; }
+    .ayah::after{ left:10px; content:"﴾"; }
+
+    .ayah p{
+        font-size:1.02rem;
+        color:var(--text);
+        padding:0 22px;
+        line-height:2.2;
+    }
+
+    .ayah small{
+        display:block;
+        margin-top:8px;
+        color:var(--gold);
+        font-size:0.78rem;
+    }
+
+    /* ===== بخش‌ها ===== */
+    .section{ margin:26px 0; scroll-margin-top:80px; }
+
+    .section-head{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-bottom:14px;
+        padding:0 4px;
+    }
+
+    .section-head .bar{
+        width:4px;
+        height:22px;
+        border-radius:3px;
+        background:linear-gradient(180deg, var(--gold), var(--primary-light));
+    }
+
+    .section-head h3{
+        color:var(--gold);
+        font-size:1.15rem;
+        font-weight:800;
+    }
+
+    .card{
+        background:linear-gradient(180deg, var(--card), var(--card-2));
+        border:1px solid var(--border);
+        border-radius:20px;
+        padding:20px;
+        box-shadow:0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .card p{
+        color:#d6e4de;
+        font-size:0.95rem;
+        margin-bottom:10px;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    .info-row{
+        display:flex;
+        align-items:flex-start;
+        gap:12px;
+        padding:10px 0;
+        border-bottom:1px dashed rgba(212,169,74,0.12);
+    }
+
+    .info-row:last-child{ border-bottom:none; }
+
+    .info-row .ic{
+        width:38px;
+        height:38px;
+        border-radius:10px;
+        background:rgba(15,122,91,0.18);
+        color:var(--primary-light);
+        display:grid;
+        place-items:center;
+        font-size:1.05rem;
+        flex-shrink:0;
+    }
+
+    .info-row strong{
+        display:block;
+        color:var(--gold);
+        font-size:0.82rem;
+        margin-bottom:3px;
+    }
+
+    .info-row span{ color:var(--text); font-size:0.92rem; }
+
+    .info-row .hl{ color:var(--primary-light); font-weight:700; }
+
+    /* ===== میانبرها (دو دکمه کنار هم) ===== */
+    .shortcuts{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        margin:28px 0 10px;
+    }
+
+    .shortcut{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:8px;
+        text-decoration:none;
+        color:var(--text);
+        padding:18px 12px;
+        border-radius:18px;
+        background:linear-gradient(135deg, rgba(15,122,91,0.35), rgba(6,74,55,0.6));
+        border:1px solid rgba(26,168,130,0.35);
+        box-shadow:0 10px 24px rgba(6,74,55,0.35);
+        text-align:center;
+        position:relative;
+        overflow:hidden;
+        transition:0.3s;
+    }
+
+    .shortcut::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(120deg, transparent 30%, rgba(212,169,74,0.18) 50%, transparent 70%);
+        transform:translateX(100%);
+        transition:0.6s;
+    }
+
+    .shortcut:hover::before{ transform:translateX(-100%); }
+    .shortcut:active{ transform:scale(0.97); }
+
+    .shortcut .big-ic{
+        width:52px;
+        height:52px;
+        border-radius:14px;
+        background:rgba(212,169,74,0.15);
+        border:1px solid rgba(212,169,74,0.3);
+        display:grid;
+        place-items:center;
+        font-size:1.5rem;
+    }
+
+    .shortcut b{
+        display:block;
+        font-size:0.92rem;
+        line-height:1.5;
+    }
+
+    .shortcut small{
+        color:var(--muted);
+        font-size:0.72rem;
+    }
+
+    .shortcut.gold{
+        background:linear-gradient(135deg, rgba(212,169,74,0.25), rgba(140,106,29,0.45));
+        border-color:rgba(212,169,74,0.4);
+        box-shadow:0 10px 24px rgba(140,106,29,0.3);
+    }
+
+    /* ===== جدول دعای ندبه ===== */
+    .table-wrap{
+        overflow-x:auto;
+        border-radius:16px;
+        border:1px solid var(--soft-border);
+        margin-top:12px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        min-width:480px;
+    }
+
+    thead{
+        background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color:#fff;
+    }
+
+    th, td{
+        padding:12px 10px;
+        text-align:center;
+        border-bottom:1px solid rgba(212,169,74,0.1);
+        white-space:nowrap;
+        font-size:0.9rem;
+    }
+
+    tbody tr:nth-child(even){ background:rgba(15,122,91,0.08); }
+    tbody tr:hover{ background:rgba(212,169,74,0.08); }
+
+    /* info-grid برای دعای ندبه امروز */
+    .info-grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:10px;
+        margin-top:10px;
+    }
+
+    .info-item{
+        background:rgba(212,169,74,0.06);
+        border:1px solid rgba(212,169,74,0.15);
+        border-radius:12px;
+        padding:12px 14px;
+    }
+
+    .info-item strong{
+        display:block;
+        color:var(--gold);
+        font-size:0.82rem;
+        margin-bottom:4px;
+    }
+
+    .info-item span{ color:var(--text); font-size:0.92rem; }
+
+    /* حضور برای همه */
+    .audience{
+        display:flex;
+        justify-content:center;
+        gap:12px;
+        margin-top:14px;
+        flex-wrap:wrap;
+    }
+
+    .audience-item{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        background:rgba(15,122,91,0.15);
+        border:1px solid var(--soft-border);
+        border-radius:12px;
+        padding:10px 14px;
+        color:var(--text);
+        font-weight:bold;
+        font-size:0.9rem;
+    }
+
+    .audience-item svg{
+        width:22px;
+        height:22px;
+        fill:var(--primary-light);
+    }
+
+    .note{
+        text-align:center;
+        color:var(--muted);
+        font-size:0.82rem;
+        margin-top:12px;
+    }
+
+    /* ===== فوتر ===== */
+    .footer{
+        text-align:center;
+        padding:30px 20px 18px;
+        color:var(--muted);
+        font-size:0.82rem;
+    }
+
+    .footer .dua{
+        color:var(--gold);
+        font-size:1rem;
+        margin-bottom:8px;
+        font-weight:700;
+    }
+
+    .footer .orn{
+        color:var(--gold);
+        opacity:0.5;
+        letter-spacing:6px;
+        font-size:0.9rem;
+        margin-top:10px;
+    }
+
+    /* انیمیشن */
+    .fade-up{
+        opacity:0;
+        transform:translateY(18px);
+        animation:fadeUp 0.7s ease forwards;
+    }
+
+    .fade-up.d1{ animation-delay:0.1s; }
+    .fade-up.d2{ animation-delay:0.25s; }
+    .fade-up.d3{ animation-delay:0.4s; }
+    .fade-up.d4{ animation-delay:0.55s; }
+
+    @keyframes fadeUp{
+        to{ opacity:1; transform:translateY(0); }
+    }
+
+    /* ===== موبایل ===== */
+    @media (max-width:420px){
+        .hero h2{ font-size:1.3rem; }
+        .ayah p{ font-size:0.92rem; padding:0 16px; }
+        .brand-text h1{ font-size:0.82rem; }
+        .brand-logo{ width:38px; height:38px; font-size:1rem; }
+        .shortcut{ padding:14px 8px; }
+        .shortcut b{ font-size:0.82rem; }
+        .shortcut .big-ic{ width:46px; height:46px; font-size:1.3rem; }
+        th, td{ padding:10px 6px; font-size:0.82rem; }
+    }
+</style>
+</head>
+<body>
+<!-- ===== هدر ===== -->
+<header class="top-bar">
+<div class="brand">
+<div class="brand-text">
+<h1>هیئت ابوالفضلی</h1>
+<p>جوانان مسجد قریشی درگز</p>
+</div>
+</div>
+<button aria-label="باز کردن منو" class="hamburger" id="hamburgerBtn">
+<span></span>
+</button>
+</header>
+<!-- ===== منوی کشویی ===== -->
+<div class="overlay" id="overlay"></div>
+<nav class="drawer" id="drawer">
+<div class="drawer-title">✦ منوی هیئت</div>
+<a class="menu-item" data-close="" href="#heyat">
+<div class="menu-icon">🕋</div>
+<div>
+<div class="menu-label">برنامه هیئت ابوالفضلی</div>
+<div class="menu-desc">اطلاع‌رسانی مراسم هفتگی</div>
+</div>
+</a>
+<a class="menu-item" data-close="" href="#nodbe">
+<div class="menu-icon">📿</div>
+<div>
+<div class="menu-label">برنامه دعای ندبه</div>
+<div class="menu-desc">زمان‌بندی دعای ندبه هفتگی</div>
+</div>
+</a>
+<a class="menu-item" data-close="" href="#about">
+<div class="menu-icon">🕌</div>
+<div>
+<div class="menu-label">درباره مسجد</div>
+<div class="menu-desc">معرفی مسجد قریشی درگز</div>
+</div>
+</a>
+</nav>
+<main class="container">
+<!-- ===== Hero - صفحه اصلی هیئت ===== -->
+<section class="hero fade-up d1">
+
+<h2>هیئت <span>ابوالفضلی</span> جوانان</h2>
+<p class="subtitle">مسجد قریشی شهرستان درگز</p>
+<div class="ayah">
+<p>اَلسَّلامُ عَلَیْکَ یا اَباعَبْدِاللَّهِ وَ عَلَى الْاَرْواحِ الَّتى حَلَّتْ بِفِنائِکَ</p>
+<small>— زیارت عاشورا —</small>
+</div>
+</section>
+<!-- ===== درباره مسجد ===== -->
+<section class="section fade-up d2" id="about">
+<div class="section-head">
+<span class="bar"></span>
+<h3>درباره مسجد قریشی</h3>
+</div>
+<div class="card">
+<p>
+<b>مسجد قریشی</b> یکی از مساجد قدیمی و پرافتخار شهرستان <b>درگز</b> در استان خراسان رضوی است که سال‌هاست به عنوان پایگاه عبادت، معرفت و فعالیت‌های فرهنگی-مذهبی جوانان این دیار شناخته می‌شود.
+            </p>
+<p>
+                این مسجد مقدس، میزبان برنامه‌های متعدد مذهبی از جمله مراسم هفتگی <b>هیئت ابوالفضلی جوانان</b>، <b>دعای پرفیض ندبه</b> صبح‌های جمعه، محافل انس با قرآن و جلسات سخنرانی و عزاداری ایام سوگواری اهل بیت (علیهم‌السلام) می‌باشد.
+            </p>
+</div>
+</section>
+<!-- ===== میانبرها (کنار هم) ===== -->
+<section class="shortcuts fade-up d3">
+<a class="shortcut" href="#heyat">
+<div class="big-ic">🕋</div>
+<div>
+<b>ورود به برنامه هیئت ابوالفضلی</b>
+<small>مراسم هفتگی</small>
+</div>
+</a>
+<a class="shortcut gold" href="#nodbe">
+<div class="big-ic">📿</div>
+<div>
+<b>برنامه دعای ندبه هیئت ابوالفضلی</b>
+<small>صبح جمعه</small>
+</div>
+</a>
+</section>
+<!-- ===== بخش هیئت هفتگی ===== -->
+<section class="section fade-up d4" id="heyat">
+<div class="section-head">
+<span class="bar"></span>
+<h3>اطلاعات مراسم هفتگی هیئت</h3>
+</div>
+<div class="card">
+<div class="info-row">
+<div class="ic">🗓️</div>
+<div>
+<strong>زمان</strong>
+<span>پنجشنبه‌ها ساعت ۲۲:۰۰</span>
+</div>
+</div>
+<div class="info-row">
+<div class="ic">📍</div>
+<div>
+<strong>مکان</strong>
+<span>مسجد قریشی، شهرستان درگز</span>
+</div>
+</div>
+<div class="info-row">
+<div class="ic">🎤</div>
+<div>
+<strong>سخنران</strong>
+<span class="hl">شیخ علی رمضانی</span>
+</div>
+</div>
+<div class="info-row">
+<div class="ic">🎶</div>
+<div>
+<strong>مداح</strong>
+<span class="hl">ذاکرین اهل بیت شهرستان درگز</span>
+</div>
+</div>
+<div class="audience">
+<div class="audience-item">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.33 0-6 2.24-6 5v1h12v-1c0-2.76-2.67-5-6-5z"></path>
+</svg>
+<span>برادران</span>
+</div>
+<div class="audience-item">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M12 11a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 12 11zm0 2c-3.59 0-6.5 2.46-6.5 5.5V20h13v-1.5C18.5 15.46 15.59 13 12 13z"></path>
+</svg>
+<span>خواهران</span>
+</div>
+</div>
+<p class="note">از عموم مؤمنین و جوانان عزیز جهت حضور در مراسم دعوت به عمل می‌آید.</p>
+</div>
+</section>
+<!-- ===== بخش دعای ندبه ===== -->
+<section class="section fade-up" id="nodbe">
+<div class="section-head">
+<span class="bar"></span>
+<h3>دعای ندبه این هفته</h3>
+</div>
+<div class="card">
+<div class="info-grid" id="todayInfo">
+<div class="info-item">
+<strong>خادم المهدی</strong>
+<span>نام خادم</span>
+</div>
+<div class="info-item">
+<strong>زمان</strong>
+<span>جمعه ساعت ۶:۰۰ صبح</span>
+</div>
+<div class="info-item">
+<strong>مکان</strong>
+<span>مسجد قریشی درگز</span>
+</div>
+</div>
+</div>
+<!-- برنامه دو ماهه -->
+<div style="margin-top:20px;">
+<div class="section-head">
+<span class="bar"></span>
+<h3>برنامه اطلاع‌رسانی دو ماهه</h3>
+</div>
+<div class="card" style="padding:14px;">
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>تاریخ</th>
+<th>خادم المهدی</th>
+<th>زمان</th>
+<th>مکان</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>۵ مرداد</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۱۲ مرداد</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۱۹ مرداد</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۲۶ مرداد</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۲ شهریور</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۹ شهریور</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۱۶ شهریور</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+<tr><td>۲۳ شهریور</td><td>نام خادم</td><td>۶:۰۰ صبح</td><td>مسجد قریشی</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ===== فوتر ===== -->
+<footer class="footer">
+<div class="dua">اللّهُمَّ عَجِّلْ لِوَلِیِّکَ الْفَرَج</div>
+<div>© هیئت ابوالفضلی جوانان مسجد قریشی درگز</div>
+
+<div style="margin:15px 0;font-weight:bold;">ما را در ایتا، تلگرام و اینستاگرام دنبال کنید</div>
+<div><a href="https://eitaa.com/heydaridargaz" target="_blank">ایتا</a> | <a href="https://t.me/Heydaridargaz/" target="_blank">تلگرام</a> | <a href="https://instagram.com/Heydaridargaz/" target="_blank">اینستاگرام</a></div></footer>
+<script>
+    // ===== منوی همبرگری =====
+    const hamburger = document.getElementById('hamburgerBtn');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu(){
+        drawer.classList.add('open');
+        overlay.classList.add('show');
+        hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu(){
+        drawer.classList.remove('open');
+        overlay.classList.remove('show');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+        drawer.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.drawer a[data-close]').forEach(a => {
+        a.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') closeMenu();
+    });
+
+    // ===== نمایش تاریخ امروز شمسی در دعای ندبه =====
+    const today = new Date().toLocaleDateString('fa-IR');
+    const todayInfo = document.getElementById('todayInfo');
+    const dateBox = document.createElement('div');
+    dateBox.className = 'info-item';
+    dateBox.innerHTML = `<strong>تاریخ امروز</strong><span>${today}</span>`;
+    todayInfo.prepend(dateBox);
+
+    // ===== افکت ورود کارت‌ها هنگام اسکرول =====
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+            if(en.isIntersecting){
+                en.target.style.opacity = 1;
+                en.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach(el => {
+        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        io.observe(el);
+    });
+</script>
+</body>
+</html>
