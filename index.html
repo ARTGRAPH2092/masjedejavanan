@@ -805,13 +805,7 @@
         if(e.key === 'Escape') closeMenu();
     });
 
-    // ===== نمایش تاریخ امروز شمسی در دعای ندبه =====
-    const today = new Date().toLocaleDateString('fa-IR');
-    const todayInfo = document.getElementById('todayInfo');
-    const dateBox = document.createElement('div');
-    dateBox.className = 'info-item';
-    dateBox.innerHTML = `<strong>تاریخ امروز</strong><span>${today}</span>`;
-    todayInfo.prepend(dateBox);
+    
 
     // ===== افکت ورود کارت‌ها هنگام اسکرول =====
     const io = new IntersectionObserver((entries) => {
